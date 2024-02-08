@@ -12,6 +12,7 @@ const userRouter = require('./routes/user.router');
 const patientRouter = require('./routes/patient.router');
 const emergencyRouter = require('./routes/emergency.router')
 const insuranceRouter = require('./routes/insurance.router')
+const appointmentRouter = require('./routes/appointment.router')
 
 // Express Middleware
 app.use(express.json());
@@ -30,6 +31,7 @@ app.use('/api/user', userRouter);
 app.use('/api/patient', patientRouter)
 app.use('/api/emergency', emergencyRouter)
 app.use('/api/insurance', insuranceRouter)
+app.use('/api/appointment', appointmentRouter)
 
 
 // Listen Server & Port
