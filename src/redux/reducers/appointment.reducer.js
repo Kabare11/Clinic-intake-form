@@ -6,6 +6,7 @@ const appointments = (state = [], action) => {
       return {};
     default:
       return state;
+      
   }
 };
 
