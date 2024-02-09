@@ -8,7 +8,6 @@ function* fetchProfile() {
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
     };
-
     const response = yield axios.get("/api/patient", config);
     console.log(response.data);
     yield put({ type: "SET_PROFILE", payload: response.data[0] });
