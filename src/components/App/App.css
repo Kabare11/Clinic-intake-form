@@ -5,7 +5,7 @@ body,
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
 }
 
@@ -109,4 +109,126 @@ Form Treatment
 input {
   margin: 5px;
   margin-bottom: 10px;
+}
+.patient_profile {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 500px;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.group label {
+  font-weight: 500;
+}
+.save-btn {
+  width: max-content;
+  padding: 10px 50px;
+  border-radius: 12px;
+  background-color: #014041;
+  color: #efefef;
+}
+.appointments {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.one-appointment {
+  background-color: #efefef;
+  padding: 5px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.appointment-details {
+  display: flex;
+  justify-content: space-between;
+}
+.appointment-btns {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+.edit-btn {
+  width: max-content;
+  padding: 10px 50px;
+  border-radius: 12px;
+  background-color: #014041;
+  color: #efefef;
+}
+.delete-btn {
+  width: max-content;
+  padding: 10px 50px;
+  border-radius: 12px;
+  background-color: red;
+  color: #efefef;
+}
+button {
+  outline: 0;
+  border: 0;
+}
+.appointment-header {
+  display: flex;
+  justify-content: space-between;
+}
+.appointments-page {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.appointment-header button {
+  font-weight: 600;
+  font-size: 1.2rem;
+  height: max-content;
+  width: max-content;
+}
+
+.cancel-btn {
+  width: max-content;
+  padding: 10px 50px;
+  border-radius: 12px;
+  background-color: transparent;
+  color: black;
+  border: 1px solid black;
+}
+.popup {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: 4px;
+}
+
+.popup-content {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  border-radius: 25px;
+  padding: 35px;
+  width: 500px;
+}
+.create-appointment {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.create-btns {
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
 }
