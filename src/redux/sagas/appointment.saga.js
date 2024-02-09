@@ -8,13 +8,13 @@ function* fetchAppointmentHistory(action) {
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
     };
-
     const response = yield axios.get("/api/appointment/history/" + action.payload.id, config);
     console.log(response.data);
     yield put({ type: "SET_APPOINTMENT_HISTORY", payload: response?.data ?? [] });
   } catch (error) {
     console.log("User get request failed", error);
   }
+  
 }
 function* scheduleAppointment(action) {
   try {
