@@ -14,7 +14,7 @@ function* fetchAppointmentHistory(action) {
   } catch (error) {
     console.log("User get request failed", error);
   }
-  
+
 }
 function* scheduleAppointment(action) {
   try {
