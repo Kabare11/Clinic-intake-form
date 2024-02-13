@@ -38,7 +38,7 @@ function* editInsuranceInfo(action) {
       yield axios.put('/api/emergency', action.payload);
 
       // automatically log a user in after registration
-      yield put({ type: 'GET_EMERGENCY_CONTACT' });
+      yield put({ type: 'GET_INSURANCE_INFO' });
 
 
    } catch (error) {
