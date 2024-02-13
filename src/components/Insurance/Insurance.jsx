@@ -3,16 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import DashboardNav from "../DashboardNav/Nav";
 
-function EmergencyContact() {
+function InsuranceInfo() {
   //! Create useState for all form field
-  const [name, setName] = useState("");
-  const [relationship, setRelationship] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [insuranceProvider, setInsuranceProvider] = useState("");
+  const [policyNumber, setPolicyNumber] = useState("");
+  const [groupNumber, setGroupNumber] = useState("");
+  const [subscriberDateOfBirth, setSubscriberDateOfBirth] = useState("");
 
   //* Fetch the currenct insurance information from the store.
-  const emergency = useSelector((store) => store.emergency);
+  const insurance = useSelector((store) => store.insurance);
 
   const dispatch = useDispatch();
 
@@ -22,98 +21,89 @@ function EmergencyContact() {
     event.preventDefault();
 
     //* Create an object for the insurance information data.
-    const newEmergencyContact = {
-      name: name,
-      relationship: relationship,
-      email: email,
-      address: address,
-      phone_number: phoneNumber,
+    const newInsuranceInfo = {
+      insurance_provider: insuranceProvider,
+      policy_number: policyNumber,
+      group_number: groupNumber,
+      subscriber_date_of_birth: subscriberDateOfBirth,
     };
 
     //! Check if we have an existing insurance information.
-    if (emergency?.id) {
+    if (insurance?.id) {
       dispatch({
-        type: "EDIT_EMERGENCY_CONTACT",
-        payload: newEmergencyContact,
+        type: "EDIT_INSURANCE_INFO",
+        payload: newInsuranceInfo,
       });
     } else {
       dispatch({
-        type: "CREATE_EMERGENCY_CONTACT",
-        payload: newEmergencyContact,
+        type: "CREATE_INSURANCE_INFO",
+        payload: newInsuranceInfo,
       });
     }
   };
 
   useEffect(() => {
-    dispatch({ type: "GET_EMERGENCY_CONTACT" });
+    dispatch({ type: "GET_INSURANCE_INFO" });
   }, [dispatch]);
 
   //* Use these useEffects to prefill the insurance details
   //* if we have an existing insurance information.
   useEffect(() => {
-    if (emergency?.id) {
-      setName(emergency?.name);
-      setRelationship(emergency?.relationship);
-      setEmail(emergency?.email);
-      setAddress(emergency?.address);
-      setPhoneNumber(emergency?.phone_number);
+    if (insurance?.id) {
+      setInsuranceProvider(insurance?.insurance_provider);
+      setPolicyNumber(insurance?.policy_number);
+      setGroupNumber(insurance?.group_number);
+      setSubscriberDateOfBirth(insurance?.subscriber_date_of_birth);
     }
-  }, [emergency]);
+  }, [insurance]);
 
   return (
     <div className="container">
       <DashboardNav />
-      <form className="patient_profile">
+      <form className="insurance">
         <div className="group">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="insurance_provider">Insurance Provider</label>
           <input
             type="text"
-            name="name"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            name="insurance_provider"
+            id="insurance_provider"
+            value={insuranceProvider}
+            onChange={(e) => setInsuranceProvider(e.target.value)}
           />
         </div>
         <div className="group">
-          <label htmlFor="relationship">Relationship</label>
+          <label htmlFor="policy_number">Policy Number</label>
           <input
-            type="text"
-            name="relationship"
-            id="relationship"
-            value={relationship}
-            onChange={(e) => setRelationship(e.target.value)}
+            type="number"
+            name="policy_number"
+            id="policy_number"
+            value={policyNumber}
+            onChange={(e) => setPolicyNumber(e.target.value)}
           />
         </div>
         <div className="group">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="group_number">Group Number</label>
           <input
-            type="email"
-            name="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="number"
+            name="group_number"
+            id="group_number"
+            value={groupNumber}
+            onChange={(e) => setGroupNumber(e.target.value)}
           />
         </div>
         <div className="group">
-          <label htmlFor="address">Address</label>
+          <label htmlFor="subscriber_date_of_birth">
+            Subscriber Date Of Birth
+          </label>
           <input
-            type="text"
-            name="address"
-            id="address"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
+            type="date"
+            name="subscriber_date_of_birth"
+            id="subscriber_date_of_birth"
+            value={subscriberDateOfBirth}
+            onChange={(e) => setSubscriberDateOfBirth(e.target.value)}
           />
         </div>
-        <div className="group">
-          <label htmlFor="phone_number">Phone Number</label>
-          <input
-            type="text"
-            name="phone_number"
-            id="phone_number"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-          />
-        </div>
+
         <button className="save-btn" onClick={submit}>
           Save
         </button>
@@ -121,4 +111,4 @@ function EmergencyContact() {
     </div>
   );
 }
-export default EmergencyContact;
+export default InsuranceInfo;
