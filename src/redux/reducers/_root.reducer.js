@@ -3,6 +3,7 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 import profile from './patient_profile.reducer'
 import appointments from './appointment.reducer';
+import emergency from './emergency.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
   profile,
-  appointments
+  appointments,
+  emergency
 });
 
 export default rootReducer;
