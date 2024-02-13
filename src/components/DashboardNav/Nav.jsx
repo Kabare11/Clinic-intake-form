@@ -18,7 +18,7 @@ function DashboardNav() {
       <Link className="" to="/insurance">
         Insurance
       </Link>
-      <Link className="" to="/emergency_contact">
+      <Link className="" to="/emergency">
         Emergency Contact
       </Link>
     </div>
