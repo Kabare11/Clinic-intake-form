@@ -11,17 +11,17 @@ function EmergencyContact() {
   const [address, setAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
-  //* Fetch the currenct emergency contact from the store.
+  //* Fetch the currenct insurance information from the store.
   const emergency = useSelector((store) => store.emergency);
 
   const dispatch = useDispatch();
 
   //! The submit function is called as soon as the save button is clicked.
-  //! it is used to create a new emergency contact or edit an existing one.
+  //! it is used to create a new einsurance information or edit an existing one.
   const submit = (event) => {
     event.preventDefault();
 
-    //* Create an object for the emergency contact data.
+    //* Create an object for the insurance information data.
     const newEmergencyContact = {
       name: name,
       relationship: relationship,
@@ -30,7 +30,7 @@ function EmergencyContact() {
       phone_number: phoneNumber,
     };
 
-    //! Check if we have an existing emergency contact.
+    //! Check if we have an existing insurance information.
     if (emergency?.id) {
       dispatch({
         type: "EDIT_EMERGENCY_CONTACT",
@@ -48,8 +48,8 @@ function EmergencyContact() {
     dispatch({ type: "GET_EMERGENCY_CONTACT" });
   }, [dispatch]);
 
-  //* Use these useEffects to prefill the emergency details
-  //* if we have an existing emergency contact.
+  //* Use these useEffects to prefill the insurance details
+  //* if we have an existing insurance information.
   useEffect(() => {
     if (emergency?.id) {
       setName(emergency?.name);
