@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import EmergencyContact from "../Emergency/Emergency";
 import {
   HashRouter as Router,
   Redirect,
@@ -19,6 +20,7 @@ import InfoPage from "../InfoPage/InfoPage";
 import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
+import Emergency from "../Emergency/Emergency";
 
 import "./App.css";
 import Appointments from "../Appointments/Appointments";
@@ -71,9 +73,9 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/info"
+            path="/emergency"
           >
-            <InfoPage />
+            <EmergencyContact />
           </ProtectedRoute>
 
           <Route exact path="/login">

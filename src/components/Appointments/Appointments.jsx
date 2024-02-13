@@ -105,15 +105,24 @@ function AppointmentPopUp({ isEdit, closePopup }) {
   const [historyHeadache, setHistoryHeadache] = useState(false);
   const [hasMigraine, setHasMigraine] = useState(false);
 
+  function formatDate(date) {
+    if (!date) return;
+    console.log(date);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Month starts from 0
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
+
   const submit = (event) => {
     event.preventDefault();
     const newAppointment = {
       appointment_time: appointmentTime,
       reason: reason,
       language_preference: languagePreference,
-      feeling_pain: feelingPain,
-      has_family_history_headache: historyHeadache,
-      has_migraine: hasMigraine,
+      feeling_pain: feelingPain === "yes" ? true : false,
+      has_family_history_headache: historyHeadache === "yes" ? true : false,
+      has_migraine: hasMigraine === "yes" ? true : false,
       patient_id: profile?.id ?? "",
       id: isEdit?.id ?? undefined,
     };
@@ -132,12 +141,12 @@ function AppointmentPopUp({ isEdit, closePopup }) {
   };
   useEffect(() => {
     if (isEdit?.id) {
-      setAppointmentTime(new Date(isEdit?.appointment_time));
+      setAppointmentTime(formatDate(new Date(isEdit?.appointment_time)));
       setReason(isEdit?.reason);
       setLanguagePreference(isEdit?.language_preference);
-      setFeelingPain(isEdit?.feeling_pain);
-      setHistoryHeadache(isEdit?.has_family_history_headache);
-      setHasMigraine(isEdit?.has_migraine);
+      setFeelingPain(isEdit?.feeling_pain ? "yes" : "no");
+      setHistoryHeadache(isEdit?.has_family_history_headache ? "yes" : "no");
+      setHasMigraine(isEdit?.has_migraine ? "yes" : "no");
     }
   }, [isEdit]);
 
@@ -152,8 +161,14 @@ function AppointmentPopUp({ isEdit, closePopup }) {
               type="date"
               name="appointment_time"
               id="appointment_time"
-              value={appointmentTime}
-              onChange={(e) => setAppointmentTime(e.target.value)}
+              value={formatDate(
+                appointmentTime?.length > 0
+                  ? new Date(appointmentTime)
+                  : undefined
+              )}
+              onChange={(e) => {
+                setAppointmentTime(new Date(e.target.value).toISOString());
+              }}
             />
           </div>
           <div className="group">
