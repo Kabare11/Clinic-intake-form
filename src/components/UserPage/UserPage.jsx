@@ -15,17 +15,26 @@ function UserPage() {
   const [hasLeftCountry, setHasLeftCountry] = useState(false);
   const [hasCovid, setHasCovid] = useState(false);
   const [dateOfBirth, setDateOfBirth] = useState("");
-
+  console.log(dateOfBirth, profile?.date_of_birth);
   useEffect(() => {
     dispatch({ type: "GET_PATIENT_PROFILE" });
   }, [dispatch]);
+
+  function formatDate(date) {
+    if (!date) return;
+    console.log(date);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Month starts from 0
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
 
   const submit = (event) => {
     event.preventDefault();
     const newProfile = {
       address: address.length > 0 ? address : profile?.address ?? "",
-      has_covid: Boolean(hasCovid),
-      has_left_country_recently: Boolean(hasLeftCountry),
+      has_covid: hasCovid === "yes" ? true : false,
+      has_left_country_recently: hasLeftCountry === "yes" ? true : false,
       date_of_birth: dateOfBirth ?? profile?.date_of_birth,
       img: "",
     };
@@ -44,9 +53,10 @@ function UserPage() {
   useEffect(() => {
     if (profile?.id) {
       setAddress(profile?.address);
-      setHasCovid(profile?.has_covid);
-      setHasLeftCountry(profile?.has_left_country_recently);
-      setDateOfBirth(new Date(profile?.date_of_birth));
+      setHasCovid(profile?.has_covid ? "yes" : "no");
+      setHasLeftCountry(profile?.has_left_country_recently ? "yes" : "no");
+      setDateOfBirth(formatDate(new Date(profile?.date_of_birth)));
+      console.log(profile?.date_of_birth);
     }
   }, [profile]);
   return (
@@ -100,8 +110,13 @@ function UserPage() {
             type="date"
             name="date_of_birth"
             id="date_of_birth"
-            value={dateOfBirth}
-            onChange={(e) => setDateOfBirth(e.target.value)}
+            value={formatDate(
+              dateOfBirth?.length > 0 ? new Date(dateOfBirth) : undefined
+            )}
+            onChange={(e) => {
+              console.log(new Date(e.target.value).toISOString());
+              setDateOfBirth(new Date(e.target.value).toISOString());
+            }}
           />
         </div>
         <button className="save-btn" onClick={submit}>
