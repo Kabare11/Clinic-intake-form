@@ -1,7 +1,7 @@
 
 const insurance = (state = {}, action) => {
    switch (action.type) {
-      case 'SET_INSURANCE':
+      case 'SET_INSURANCE_INFO':
          return action.payload;
       case 'UNSET_USER':
          return {};
