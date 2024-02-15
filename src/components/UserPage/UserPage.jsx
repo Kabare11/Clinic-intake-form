@@ -3,6 +3,7 @@ import LogOutButton from "../LogOutButton/LogOutButton";
 import { useSelector, useDispatch } from "react-redux";
 import DashboardNav from "../DashboardNav/Nav";
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom"; 
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM

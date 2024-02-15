@@ -15,6 +15,15 @@ function InsuranceInfo() {
 
   const dispatch = useDispatch();
 
+  function formatDate(date) {
+    if (!date) return;
+    console.log(date);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Month starts from 0
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
+
   //! The submit function is called as soon as the save button is clicked.
   //! it is used to create a new einsurance information or edit an existing one.
   const submit = (event) => {
@@ -53,7 +62,9 @@ function InsuranceInfo() {
       setInsuranceProvider(insurance?.insurance_provider);
       setPolicyNumber(insurance?.policy_number);
       setGroupNumber(insurance?.group_number);
-      setSubscriberDateOfBirth(insurance?.subscriber_date_of_birth);
+      setSubscriberDateOfBirth(
+        formatDate(new Date(insurance?.subscriber_date_of_birth))
+      );
     }
   }, [insurance]);
 
@@ -96,10 +107,14 @@ function InsuranceInfo() {
             Subscriber Date Of Birth
           </label>
           <input
+            value={formatDate(
+              subscriberDateOfBirth?.length > 0
+                ? new Date(subscriberDateOfBirth)
+                : undefined
+            )}
             type="date"
             name="subscriber_date_of_birth"
             id="subscriber_date_of_birth"
-            value={subscriberDateOfBirth}
             onChange={(e) => setSubscriberDateOfBirth(e.target.value)}
           />
         </div>
