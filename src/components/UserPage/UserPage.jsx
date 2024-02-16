@@ -3,7 +3,7 @@ import LogOutButton from "../LogOutButton/LogOutButton";
 import { useSelector, useDispatch } from "react-redux";
 import DashboardNav from "../DashboardNav/Nav";
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom"; 
+import { useHistory } from "react-router-dom";
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -11,7 +11,7 @@ function UserPage() {
   const profile = useSelector((store) => store.profile);
   console.log(profile);
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const [address, setAddress] = useState("");
   const [hasLeftCountry, setHasLeftCountry] = useState(false);
   const [hasCovid, setHasCovid] = useState(false);
@@ -50,6 +50,7 @@ function UserPage() {
         payload: newProfile,
       });
     }
+    history.push("/insurance");
   };
   useEffect(() => {
     if (profile?.id) {

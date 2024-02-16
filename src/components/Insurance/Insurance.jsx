@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import DashboardNav from "../DashboardNav/Nav";
+import { useHistory } from "react-router-dom";
 
 function InsuranceInfo() {
   //! Create useState for all form field
@@ -14,6 +15,7 @@ function InsuranceInfo() {
   const insurance = useSelector((store) => store.insurance);
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   function formatDate(date) {
     if (!date) return;
@@ -49,6 +51,7 @@ function InsuranceInfo() {
         payload: newInsuranceInfo,
       });
     }
+    history.push("/emergency");
   };
 
   useEffect(() => {

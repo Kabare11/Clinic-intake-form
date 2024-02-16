@@ -12,14 +12,14 @@ function DashboardNav() {
       <Link className="" to="/user">
         Patient Profile
       </Link>
-      <Link className="" to="/appointments">
-        Appointments
-      </Link>
       <Link className="" to="/insurance">
         Insurance
       </Link>
       <Link className="" to="/emergency">
         Emergency Contact
+      </Link>
+      <Link className="" to="/appointments">
+        Appointments
       </Link>
     </div>
   );

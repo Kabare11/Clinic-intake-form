@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import DashboardNav from "../DashboardNav/Nav";
+import { useHistory } from "react-router-dom";
 
 function EmergencyContact() {
   //! Create useState for all form field
@@ -15,6 +16,7 @@ function EmergencyContact() {
   const emergency = useSelector((store) => store.emergency);
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   //! The submit function is called as soon as the save button is clicked.
   //! it is used to create a new emergency contact or edit an existing one.
@@ -42,6 +44,7 @@ function EmergencyContact() {
         payload: newEmergencyContact,
       });
     }
+    history.push("/appointments");
   };
 
   useEffect(() => {
