@@ -36,7 +36,7 @@ function InsuranceInfo() {
       insurance_provider: insuranceProvider,
       policy_number: policyNumber,
       group_number: groupNumber,
-      subscriber_date_of_birth: subscriberDateOfBirth,
+      subscriber_date_of_birth: subscriberDateOfBirth?.length > 0 ? new Date(subscriberDateOfBirth) : new Date(),
     };
 
     //! Check if we have an existing insurance information.

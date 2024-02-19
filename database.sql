@@ -18,7 +18,8 @@ CREATE TABLE appointment (
     feeling_pain boolean NOT NULL DEFAULT false,
     has_family_history_headache boolean NOT NULL DEFAULT false,
     has_migraine boolean NOT NULL DEFAULT false,
-    
+    is_approved boolean NOT NULL DEFAULT false,
+
     FOREIGN KEY (patient_id) REFERENCES patient_profile (id)
 );
 
@@ -53,3 +54,6 @@ CREATE TABLE patient_profile (
     date_of_birth DATE NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user (id)
 );
+
+alter table appointment
+add column is_approved varchar(45) default 'pending';

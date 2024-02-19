@@ -44,7 +44,6 @@ function EmergencyContact() {
         payload: newEmergencyContact,
       });
     }
-    history.push("/appointments");
   };
 
   useEffect(() => {

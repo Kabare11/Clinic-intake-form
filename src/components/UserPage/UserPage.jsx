@@ -36,7 +36,7 @@ function UserPage() {
       address: address.length > 0 ? address : profile?.address ?? "",
       has_covid: hasCovid === "yes" ? true : false,
       has_left_country_recently: hasLeftCountry === "yes" ? true : false,
-      date_of_birth: dateOfBirth ?? profile?.date_of_birth,
+      date_of_birth: (dateOfBirth?.length > 0 ? dateOfBirth : new Date()),
       img: "",
     };
     if (profile?.id) {
@@ -50,7 +50,7 @@ function UserPage() {
         payload: newProfile,
       });
     }
-    history.push("/insurance");
+    history.push("/appointments");
   };
   useEffect(() => {
     if (profile?.id) {

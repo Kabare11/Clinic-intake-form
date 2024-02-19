@@ -40,3 +40,29 @@
 .navLink:hover {
   background-color: #008183;
 }
+
+
+.dashboardnav {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.dashboardnav a {
+  text-decoration: none;
+  /* color: #f2f2f2; */
+  /* background-color: #00acb0; */
+  text-align: center;
+  padding: 10px 15px;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  outline: 0;
+  border-radius: 999px;
+  /* box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2); */
+}
+
+button {
+  cursor: pointer;
+}

@@ -39,10 +39,13 @@ function Appointments() {
         {appointments?.length &&
           appointments?.map((appointment) => (
             <div className="one-appointment" key={appointment?.id}>
-              <h2>
-                Appointment On{" "}
-                {processDate(new Date(appointment?.appointment_time))}
-              </h2>
+              <div className="appointment-title">
+                <h2>
+                  Appointment On{" "}
+                  {processDate(new Date(appointment?.appointment_time))}
+                </h2>
+                <span>{appointment?.is_approved}</span>
+              </div>
               <p>{appointment?.reason}</p>
               <div className="appointment-details">
                 <p>Language Preference: {appointment?.language_preference}</p>
@@ -54,7 +57,10 @@ function Appointments() {
                 <p>Has Migraine: {appointment?.has_migraine ? "Yes" : "No"}</p>
               </div>
               <div className="appointment-btns">
-                <button
+                {
+                  // you should only be able to edit if the appointment is pending
+                }
+                {appointment?.is_approved === "pending" && <button
                   className="edit-btn"
                   onClick={() => {
                     setIsEdit(appointment);
@@ -62,7 +68,7 @@ function Appointments() {
                   }}
                 >
                   Edit
-                </button>
+                </button>}
                 <button
                   className="delete-btn"
                   onClick={() => {
@@ -117,7 +123,7 @@ function AppointmentPopUp({ isEdit, closePopup }) {
   const submit = (event) => {
     event.preventDefault();
     const newAppointment = {
-      appointment_time: appointmentTime,
+      appointment_time: appointmentTime ? new Date(appointmentTime) : new Date(),
       reason: reason,
       language_preference: languagePreference,
       feeling_pain: feelingPain === "yes" ? true : false,

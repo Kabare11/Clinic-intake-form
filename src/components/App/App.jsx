@@ -17,14 +17,13 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 import AboutPage from "../AboutPage/AboutPage";
 import UserPage from "../UserPage/UserPage";
-import InfoPage from "../InfoPage/InfoPage";
 import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
-import Emergency from "../Emergency/Emergency";
 
 import "./App.css";
 import Appointments from "../Appointments/Appointments";
+import AdminDashboard from "../Dashboard/Dashboard";
 
 function App() {
   const dispatch = useDispatch();
@@ -87,11 +86,19 @@ function App() {
             <InsuranceInfo />
           </ProtectedRoute>
 
+          <ProtectedRoute exact path="/dashboard">
+            <AdminDashboard />
+          </ProtectedRoute>
+
           <Route exact path="/login">
             {user.id ? (
               // If the user is already logged in,
               // redirect to the /user page
-              <Redirect to="/user" />
+              user.username === "Admin" ? (
+                <Redirect to="/dashboard" />
+              ) : (
+                <Redirect to="/user" />
+              )
             ) : (
               // Otherwise, show the login page
               <LoginPage />
@@ -102,7 +109,11 @@ function App() {
             {user.id ? (
               // If the user is already logged in,
               // redirect them to the /user page
-              <Redirect to="/user" />
+              user.username === "Admin" ? (
+                <Redirect to="/dashboard" />
+              ) : (
+                <Redirect to="/user" />
+              )
             ) : (
               // Otherwise, show the registration page
               <RegisterPage />
@@ -113,7 +124,11 @@ function App() {
             {user.id ? (
               // If the user is already logged in,
               // redirect them to the /user page
-              <Redirect to="/user" />
+              user.username === "Admin" ? (
+                <Redirect to="/dashboard" />
+              ) : (
+                <Redirect to="/user" />
+              )
             ) : (
               // Otherwise, show the Landing page
               <LandingPage />

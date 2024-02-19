@@ -54,9 +54,9 @@ router.put("/", rejectUnauthenticated, (req, res) => {
  has_covid = $3,
  has_left_country_recently = $4,
  date_of_birth = $5
- 
+
  WHERE user_id = $6;
- 
+
     `;
   pool
     .query(updateQuery, [
@@ -76,7 +76,7 @@ router.put("/", rejectUnauthenticated, (req, res) => {
 
 router.delete("/", rejectUnauthenticated, (req, res) => {
   let deleteQuery = `
-   DELETE FROM "patient_profile" 
+   DELETE FROM "patient_profile"
  WHERE user_id = $1;
     `;
   pool

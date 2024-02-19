@@ -60,9 +60,9 @@ router.put("/:id", rejectUnauthenticated, (req, res) => {
   has_family_history_headache = $5,
   has_migraine = $6
 
-  
+
   WHERE id = $7;
-  
+
      `;
    pool
       .query(updateQuery, [
@@ -84,7 +84,7 @@ router.put("/:id", rejectUnauthenticated, (req, res) => {
 
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
    let deleteQuery = `
-    DELETE FROM "appointment" 
+    DELETE FROM "appointment"
   WHERE id = $1;
      `;
    pool
@@ -92,6 +92,42 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
       .then(() => res.sendStatus(201))
       .catch((err) => {
          console.log("Delete new appointment profile failed: ", err);
+         res.sendStatus(500);
+      });
+});
+
+
+// ADMIN endpoints, we check if admin by checking username = "Admin"
+
+// fetch all appointments
+router.get("/admin", rejectUnauthenticated, (req, res) => {
+   const queryText = `SELECT * FROM "appointment" ORDER BY "appointment_time" DESC`;
+   pool
+      .query(queryText)
+      .then((result) => res.send(result.rows))
+      .catch((err) => {
+         console.log("Get Request Of patient appointment failed ", err);
+         res.sendStatus(500);
+      });
+});
+
+
+// approve or deny appointment
+router.put("/admin/:id", rejectUnauthenticated, (req, res) => {
+   const updateAppointment = req.body;
+   let updateQuery = `
+     UPDATE "appointment"
+  SET is_approved = $1
+  WHERE id = $2;
+     `;
+   pool
+      .query(updateQuery, [
+         updateAppointment.is_approved,
+         req.params.id,
+      ])
+      .then(() => res.sendStatus(201))
+      .catch((err) => {
+         console.log("Put new appointment failed: ", err);
          res.sendStatus(500);
       });
 });

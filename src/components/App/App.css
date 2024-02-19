@@ -20,6 +20,8 @@ Container
 
 .container {
   padding: 20px;
+  max-width: 1024px;
+  margin: 0 auto;
 }
 
 /* --------------------------------------------------------------------------------
@@ -110,11 +112,12 @@ input {
   margin: 5px;
   margin-bottom: 10px;
 }
+
 .patient_profile {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  max-width: 500px;
+  /* max-width: 500px; */
 }
 
 .group {
@@ -122,9 +125,11 @@ input {
   flex-direction: column;
   gap: 10px;
 }
+
 .group label {
   font-weight: 500;
 }
+
 .save-btn {
   width: max-content;
   padding: 10px 50px;
@@ -132,29 +137,41 @@ input {
   background-color: #014041;
   color: #efefef;
 }
+
 .appointments {
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
+
 .one-appointment {
   background-color: #efefef;
-  padding: 5px;
+  padding: 10px;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
+
 .appointment-details {
   display: flex;
   justify-content: space-between;
 }
+
 .appointment-btns {
   display: flex;
   justify-content: flex-end;
   gap: 15px;
 }
+
+.appointment-btns button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
+
 .edit-btn {
   width: max-content;
   padding: 10px 50px;
@@ -162,6 +179,7 @@ input {
   background-color: #014041;
   color: #efefef;
 }
+
 .delete-btn {
   width: max-content;
   padding: 10px 50px;
@@ -169,19 +187,23 @@ input {
   background-color: red;
   color: #efefef;
 }
+
 button {
   outline: 0;
   border: 0;
 }
+
 .appointment-header {
   display: flex;
   justify-content: space-between;
 }
-.appointments-page {
+
+.appointments-page, .insurance {
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
+
 .appointment-header button {
   font-weight: 600;
   font-size: 1.2rem;
@@ -197,6 +219,7 @@ button {
   color: black;
   border: 1px solid black;
 }
+
 .popup {
   position: fixed;
   z-index: 100;
@@ -222,13 +245,44 @@ button {
   padding: 35px;
   width: 500px;
 }
+
 .create-appointment {
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
+
 .create-btns {
   display: flex;
   justify-content: space-between;
   gap: 25px;
+}
+
+
+.appointment-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-transform: capitalize;
+}
+
+.appointment-title span {
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #014041;
+}
+
+input:focus {
+  outline: 0;
+  border: 1px solid #008183;
 }
